@@ -1,6 +1,7 @@
 class UsersController < ApplicationController
   before_action :logged_in_user, only: [:edit, :update]
   before_action :correct_user,   only: [:edit, :update]
+
   def new
     @user = User.new
   end
@@ -53,7 +54,7 @@ class UsersController < ApplicationController
 
   def correct_user
     @user = User.find_by(id: params[:id])
-    redirect_to(root_url, status: 'see_other') unless @user == current_user
+    redirect_to(root_url, status: :see_other) unless current_user?(@user)
   end
 
 end

@@ -1,7 +1,7 @@
 source "https://rubygems.org"
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby "3.2.2"
+ruby "3.2.4"
 
 gem "rails",           "7.0.4.3"
 gem "bcrypt",          "3.1.18"
@@ -26,7 +26,7 @@ group :development do
   gem "solargraph",          "0.50.0"
   gem "irb",                 "1.10.0"
   gem "repl_type_completor", "0.1.2"
-  gem "rubocop",             "1.63.2", require: false          
+  gem "rubocop",             "1.63.2", require: false
 end
 
 group :test do
@@ -40,12 +40,12 @@ group :test do
   gem "guard-minitest",           "2.4.6"
 end
 
-group :production do
-  if RUBY_PLATFORM =~ /linux/ && RbConfig::CONFIG['host_cpu'] =~ /x86_64/
-    gem "pg", "1.2.3"
-  end
-end
+# group :production do
+#   if RUBY_PLATFORM =~ /linux/ && RbConfig::CONFIG['host_cpu'] =~ /x86_64/
+#     gem "pg", "1.2.3"
+#   end
+# end
 
 
 # Windows ではタイムゾーン情報用の tzinfo-data gem を含める必要があります
-gem "tzinfo-data", platforms: %i[ mingw mswin x64_mingw jruby ]
+# gem "tzinfo-data", platforms: %i[ mingw mswin x64_mingw jruby ]
