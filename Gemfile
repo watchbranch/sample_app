@@ -3,6 +3,8 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '3.2.4'
 
+gem 'active_storage_validations', '0.9.8'
+gem "image_processing",           "1.12.2"
 gem 'bcrypt', '3.1.18'
 gem 'bootsnap', '1.16.0', require: false
 gem 'bootstrap-sass', '3.4.1'

@@ -25,6 +25,8 @@ class UsersController < ApplicationController
 
   def show
     @user = User.find_by(id: params[:id])
+    @microposts = @user.microposts.paginate(page: params[:page])
+
     return unless @user.nil?
 
     redirect_to root_url, alert: 'User not found.'
@@ -47,7 +49,7 @@ class UsersController < ApplicationController
 
   def destroy
     User.find(params[:id]).destroy
-    flash[:success] = "User deleted"
+    flash[:success] = 'User deleted'
     redirect_to users_url, status: :see_other
   end
 
@@ -57,13 +59,13 @@ class UsersController < ApplicationController
     params.require(:user).permit(:name, :email, :password, :password_confirmation)
   end
 
-  def logged_in_user
-    return if logged_in?
+  # def logged_in_user
+  #   return if logged_in?
 
-    store_location
-    flash[:danger] = 'Please log in.'
-    redirect_to login_url, see: :see_other
-  end
+  #   store_location
+  #   flash[:danger] = 'Please log in.'
+  #   redirect_to login_url, see: :see_other
+  # end
 
   def correct_user
     @user = User.find(params[:id])
@@ -73,5 +75,4 @@ class UsersController < ApplicationController
   def admin_user
     redirect_to(root_url, status: :see_other) unless current_user.admin?
   end
-
 end
